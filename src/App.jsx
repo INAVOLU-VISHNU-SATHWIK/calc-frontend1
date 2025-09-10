@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { callApi,BASEURL } from './api';
+import { callApi, BASEURL } from './api';
 
 class App extends Component {
   constructor(){
     super();
-    this.state={A:0,B:0,RES:0};
+    this.state = { A: 0, B: 0, RES: 0 };
     this.getResponse = this.getResponse.bind(this);
   }
 
@@ -13,16 +13,28 @@ class App extends Component {
     callApi("GET", BASEURL + `add/${this.state.A}/${this.state.B}`, "", this.getResponse);
   }
 
+  subtract(){
+    callApi("GET", BASEURL + `subtract/${this.state.A}/${this.state.B}`, "", this.getResponse);
+  }
+
+  multiply(){
+    callApi("GET", BASEURL + `multiply/${this.state.A}/${this.state.B}`, "", this.getResponse);
+  }
+
+  divide(){
+    callApi("GET", BASEURL + `divide/${this.state.A}/${this.state.B}`, "", this.getResponse);
+  }
+
   getResponse(res){
-    this.setState({RES: res});
+    this.setState({ RES: res });
   }
 
   loadInputChange(event){
-      this.setState({[event.target.name] : event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
-    const {A, B, RES} = this.state;
+    const { A, B, RES } = this.state;
     return (
       <>
         <header>
@@ -32,11 +44,15 @@ class App extends Component {
           <table>
             <tr>
               <td>Enter the value of A</td>
-              <td><input type='text' id='T1' name='A' value={A} onChange={(event)=>this.loadInputChange(event)} /></td>
+              <td>
+                <input type='text' id='T1' name='A' value={A} onChange={(event)=>this.loadInputChange(event)} />
+              </td>
             </tr>
             <tr>
               <td>Enter the value of B</td>
-              <td><input type='text' id='T2' name='B' value={B} onChange={(event)=>this.loadInputChange(event)} /></td>
+              <td>
+                <input type='text' id='T2' name='B' value={B} onChange={(event)=>this.loadInputChange(event)} />
+              </td>
             </tr>
             <tr>
               <td>Result</td>
@@ -44,7 +60,12 @@ class App extends Component {
             </tr>
             <tr>
               <td></td>
-              <td><button onClick={()=>this.add()}>ADD</button></td>              
+              <td>
+                <button onClick={()=>this.add()}>ADD</button>
+                <button onClick={()=>this.subtract()}>SUBTRACT</button>
+                <button onClick={()=>this.multiply()}>MULTIPLY</button>
+                <button onClick={()=>this.divide()}>DIVIDE</button>
+              </td>              
             </tr>
           </table>
         </section>
