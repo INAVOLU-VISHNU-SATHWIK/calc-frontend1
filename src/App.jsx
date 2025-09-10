@@ -14,15 +14,15 @@ class App extends Component {
   }
 
   subtract(){
-    callApi("GET", BASEURL + `subtract/${this.state.A}/${this.state.B}`, "", this.getResponse);
+    callApi("GET", BASEURL + `sub/${this.state.A}/${this.state.B}`, "", this.getResponse);
   }
 
   multiply(){
-    callApi("GET", BASEURL + `multiply/${this.state.A}/${this.state.B}`, "", this.getResponse);
+    callApi("GET", BASEURL + `mul/${this.state.A}/${this.state.B}`, "", this.getResponse);
   }
 
   divide(){
-    callApi("GET", BASEURL + `divide/${this.state.A}/${this.state.B}`, "", this.getResponse);
+    callApi("GET", BASEURL + `div/${this.state.A}/${this.state.B}`, "", this.getResponse);
   }
 
   getResponse(res){
